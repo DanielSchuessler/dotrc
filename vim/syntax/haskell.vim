@@ -19,7 +19,7 @@
 "
 " Language:		    Haskell
 " Maintainer:		Haskell Cafe mailinglist <haskell-cafe@haskell.org>
-" Last Change:		2010 Feb 21
+" Last Change:		2012 Jun 27
 " Original Author:	John Williams <jrw@pobox.com>
 "
 " Thanks to Ryan Crumley for suggestions and John Meacham for
@@ -229,6 +229,9 @@ sy match hsQQEnd "|\]" contained
 sy match hsQQVarID "\[\$\(.\&[^|]\)*|" contained
 sy match hsQQVarIDNew "\[\(.\&[^|]\)*|" contained
 
+" TH quotations
+sy region hsQuotation matchgroup=hsQuotationBrackets start="\[[edtp]\?|" end="|\]" contains=TOP transparent fold
+
 if exists("hs_highlight_debug")
   " Debugging functions from the standard prelude.
   syn keyword hsDebug undefined error trace
@@ -352,6 +355,8 @@ if version >= 508 || !exists("did_hs_syntax_inits")
   HiLink hsQQVarIDNew Keyword
   HiLink hsQQEnd   Keyword
   HiLink hsQQContent String
+
+  HiLink hsQuotationBrackets   PreCondit
 
   delcommand HiLink
 endif
